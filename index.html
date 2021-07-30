@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Neural Network</title>
+
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+	<div class="page flex-center">
+		<header class="header">
+			<div class="container">
+				<h1>Neural Network</h1>
+			</div>
+		</header>
+
+		<div class="content">
+			<section id="app" class="canvas-elements">
+				<div class="container">
+					<div class="description">
+						<p>A neural network that can recognize numbers in an image</p>
+					</div>
+
+					<div class="outputs flex-center">
+						<div
+							v-for="(output, id) in outputs"
+							class="tooltip-hover flex-center"
+							v-bind:style="'--top:' + output"
+							v-bind:class = "{ active: outputIndex == id }">
+							<span>{{ id }}</span>
+							<span class="tooltip">{{ round(output) }}</span>
+						</div>
+					</div>
+
+					<div class="canvas-parent flex-center">
+						<div class="canvas-info flex-center tooltip-hover">
+							<span class="tooltip-icon-text">i</span>
+							<span class="tooltip">{{ epoches }} epoches</span>
+						</div>
+						<canvas id="paint-canvas"></canvas>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<footer class="footer">
+			<div class="container">
+				<p class="footer-text-made">Made by <a href="https://github.com/kansherhan" class="footer-made">Sherhan</a></p>
+			</div>
+		</footer>
+	</div>
+
+	<div class="no-support flex-center">
+		<p>Log in from your computer</p>
+	</div>
+
+	<div id="loading" class="flex-center">
+		<p>Loading...</p>
+	</div>
+
+	<script>
+		var loadingDom = document.getElementById("loading");
+		var loadingSquareCount = 0;
+		var loadingIntervalIndex = setInterval(() =>
+		{
+			loadingDom.innerText = "Loading" + ".".repeat(loadingSquareCount);
+			
+			loadingSquareCount = loadingSquareCount >= 3 ? 0 : loadingSquareCount + 1;
+		}, 1000 / 3);
+		
+		window.onload = () =>
+		{
+			loadingDom.style.display = "none";
+			clearInterval(loadingIntervalIndex);
+		};
+	</script>
+
+	<script src="js/lib/vue.js"></script>
+	<script>
+		window.Vue ?? document.write('<script src="https://cdn.jsdelivr.net/npm/vue@2"><\/script>');
+	</script>
+
+	<script src="data/network.json.js"></script>
+	<script>
+		window.network_json ?? document.write('<script src="http://files.b77814xm.beget.tech/files/network.json.js"><\/script>');
+	</script>
+
+	<script defer src="js/app.js"></script>
+</body>
+</html>
