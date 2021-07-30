@@ -62,22 +62,23 @@
 	</div>
 
 	<div id="loading" class="flex-center">
-		<p>Loading...</p>
+		<p class="loading-warring">The download may take a long time if you have a weak internet connection</p>
+		<p class="loading-text">Loading...</p>
 	</div>
 
 	<script>
-		var loadingDom = document.getElementById("loading");
+		var loadingDom = document.querySelector("#loading > .loading-text");
 		var loadingSquareCount = 0;
 		var loadingIntervalIndex = setInterval(() =>
 		{
-			loadingDom.innerText = "Loading" + ".".repeat(loadingSquareCount);
+			loadingDom.textContent = "Loading" + ".".repeat(loadingSquareCount);
 			
 			loadingSquareCount = loadingSquareCount >= 3 ? 0 : loadingSquareCount + 1;
 		}, 1000 / 3);
 		
 		window.onload = () =>
 		{
-			loadingDom.style.display = "none";
+			document.querySelector("#loading").style.display = "none";
 			clearInterval(loadingIntervalIndex);
 		};
 	</script>

@@ -196,6 +196,8 @@
 }
 
 #loading {
+	flex-direction: column;
+
 	width: 100vw;
 	height: 100vh;
 
@@ -205,6 +207,12 @@
 	z-index: 999;
 
 	background: #7f00ff;
+}
+
+.loading-warring {
+	margin-bottom: 20px;
+
+	font-size: 12px;
 }
 
 @media(max-width: 768px) {
